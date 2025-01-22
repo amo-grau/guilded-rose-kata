@@ -24,7 +24,7 @@ public class GildedRose
                 {
                     if (item.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        IncreaseQuality(item, -1);
+                        IncreaseQuality(item, -1); // that's the normal case!!
                     }
                 }
             }
@@ -36,7 +36,7 @@ public class GildedRose
 
                     if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (item.SellIn < 11)
+                        if (SellInDateLowerThan(11, item))
                         {
                             if (HasQualityLowerThan(50, item))
                             {
@@ -44,7 +44,7 @@ public class GildedRose
                             }
                         }
 
-                        if (item.SellIn < 6)
+                        if (SellInDateLowerThan(6, item))
                         {
                             if (HasQualityLowerThan(50, item))
                             {
@@ -60,7 +60,7 @@ public class GildedRose
                 item.SellIn = item.SellIn - 1;
             }
 
-            if (item.SellIn < 0)
+            if (SellInDateLowerThan(0, item))
             {
                 if (item.Name != "Aged Brie")
                 {
@@ -99,6 +99,10 @@ public class GildedRose
     private bool HasQualityLowerThan(int treshold, Item item)
     {
         return item.Quality < treshold;
+    }
+
+    private bool SellInDateLowerThan(int treshold, Item item){
+        return item.SellIn < treshold;
     }
 
     private Item IncreaseQuality(Item item, int amount)
