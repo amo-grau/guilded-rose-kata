@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace GildedRoseKata;
 
@@ -21,7 +24,7 @@ public class GildedRose
                 {
                     if (item.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        item.Quality = item.Quality - 1;
+                        IncreaseQuality(item, -1);
                     }
                 }
             }
@@ -29,7 +32,7 @@ public class GildedRose
             {
                 if (HasQualityLowerThan(50, item))
                 {
-                    item.Quality = item.Quality + 1;
+                    IncreaseQuality(item, 1);
 
                     if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
@@ -37,7 +40,7 @@ public class GildedRose
                         {
                             if (HasQualityLowerThan(50, item))
                             {
-                                item.Quality = item.Quality + 1;
+                                IncreaseQuality(item, 1);
                             }
                         }
 
@@ -45,7 +48,7 @@ public class GildedRose
                         {
                             if (HasQualityLowerThan(50, item))
                             {
-                                item.Quality = item.Quality + 1;
+                                IncreaseQuality(item, 1);
                             }
                         }
                     }
@@ -67,33 +70,41 @@ public class GildedRose
                         {
                             if (item.Name != "Sulfuras, Hand of Ragnaros")
                             {
-                                item.Quality = item.Quality - 1;
+                                IncreaseQuality(item, -1);
                             }
                         }
                     }
                     else
                     {
-                        item.Quality = item.Quality - item.Quality;
+                        IncreaseQuality(item, -item.Quality);
                     }
                 }
                 else
                 {
                     if (HasQualityLowerThan(50, item))
                     {
-                        item.Quality = item.Quality + 1;
+                        IncreaseQuality(item, 1);
                     }
                 }
             }
         }
 
-        bool HasPositiveQuality(Item item)
-        {
-            return item.Quality > 0;
-        }
+    }
 
-        bool HasQualityLowerThan(int treshold, Item item)
-        {
-            return item.Quality < treshold;
-        }
+    private bool HasPositiveQuality(Item item)
+    {
+        return item.Quality > 0;
+    }
+
+    private bool HasQualityLowerThan(int treshold, Item item)
+    {
+        return item.Quality < treshold;
+    }
+
+    private Item IncreaseQuality(Item item, int amount)
+    {
+        var result = item;
+        result.Quality += amount;
+        return result;
     }
 }
