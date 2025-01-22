@@ -17,7 +17,7 @@ public class GildedRose
         {
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
-                if (item.Quality > 0)
+                if (HasPositiveQuality(item))
                 {
                     if (item.Name != "Sulfuras, Hand of Ragnaros")
                     {
@@ -27,7 +27,7 @@ public class GildedRose
             }
             else
             {
-                if (item.Quality < 50)
+                if (HasQualityLowerThan(50, item))
                 {
                     item.Quality = item.Quality + 1;
 
@@ -35,7 +35,7 @@ public class GildedRose
                     {
                         if (item.SellIn < 11)
                         {
-                            if (item.Quality < 50)
+                            if (HasQualityLowerThan(50, item))
                             {
                                 item.Quality = item.Quality + 1;
                             }
@@ -43,7 +43,7 @@ public class GildedRose
 
                         if (item.SellIn < 6)
                         {
-                            if (item.Quality < 50)
+                            if (HasQualityLowerThan(50, item))
                             {
                                 item.Quality = item.Quality + 1;
                             }
@@ -63,7 +63,7 @@ public class GildedRose
                 {
                     if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (item.Quality > 0)
+                        if (HasPositiveQuality(item))
                         {
                             if (item.Name != "Sulfuras, Hand of Ragnaros")
                             {
@@ -78,12 +78,22 @@ public class GildedRose
                 }
                 else
                 {
-                    if (item.Quality < 50)
+                    if (HasQualityLowerThan(50, item))
                     {
                         item.Quality = item.Quality + 1;
                     }
                 }
             }
+        }
+
+        bool HasPositiveQuality(Item item)
+        {
+            return item.Quality > 0;
+        }
+
+        bool HasQualityLowerThan(int treshold, Item item)
+        {
+            return item.Quality < treshold;
         }
     }
 }
