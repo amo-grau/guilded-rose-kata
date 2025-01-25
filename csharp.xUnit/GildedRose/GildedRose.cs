@@ -47,10 +47,6 @@ public class GildedRose
                     IncreaseQuality(item, 1);   
             }
 
-            else if (!HasPositiveQuality(item))
-            {
-                IncreaseQuality(item, 1); // this should set quality to 0   
-            }
             else
             {
                 IncreaseQuality(item, -1); // that's the normal case!!
@@ -87,6 +83,11 @@ public class GildedRose
                         IncreaseQuality(item, 1); // aged brie quality
                     }
                 }
+            }
+
+            if (!HasPositiveQuality(item))
+            {
+                item.Quality = 0;
             }
         }
 
