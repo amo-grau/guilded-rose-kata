@@ -21,17 +21,21 @@ public class GildedRose
 
         foreach(var item in Items)
         {
-            if (SellDatePassed(item)) 
-                PassedDateUpdate(item);
+            UpdateItemQuality(item);
+        }
+    }
 
-            else 
-            {
-                Update(item);
-            }
+    private void UpdateItemQuality(Item item)
+    {
+        if (SellDatePassed(item))
+            PassedDateUpdate(item);
 
-            SetQualityInRange(item);
+        else
+        {
+            Update(item);
         }
 
+        SetQualityInRange(item);
     }
 
     private void Update(Item item)
