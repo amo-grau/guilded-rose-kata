@@ -52,20 +52,25 @@ public class GildedRose
                 }
             }
 
-            if (Is(item, "Sulfuras, Hand of Ragnaros"))
-            {
-                if (item.Quality != 80)
-                    item.Quality = 80;
-            }
-            else
-            {
-                if (item.Quality > 50)
-                    item.Quality = 50;
-                if (!HasPositiveQuality(item))
-                    item.Quality = 0;
-            }
+            EnsureQualityInRange(item);
         }
 
+    }
+
+    private void EnsureQualityInRange(Item item)
+    {
+        if (Is(item, "Sulfuras, Hand of Ragnaros"))
+        {
+            if (item.Quality != 80)
+                item.Quality = 80;
+        }
+        else
+        {
+            if (item.Quality > 50)
+                item.Quality = 50;
+            if (!HasPositiveQuality(item))
+                item.Quality = 0;
+        }
     }
 
     private void IncreaseQualityForPositiveSellInDate(Item item)
