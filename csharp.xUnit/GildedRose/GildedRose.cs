@@ -54,10 +54,10 @@ public class GildedRose
 
             if (!Is(item, "Sulfuras, Hand of Ragnaros"))
             {
-                item.SellIn = item.SellIn - 1;
+                item.SellIn = item.SellIn - 1; // normal case
             }
 
-            if (SellInDateLowerThan(0, item))
+            if (SellDateExpired(item))
             {
                 if (!Is(item, "Aged Brie"))
                 {
@@ -67,20 +67,20 @@ public class GildedRose
                         {
                             if (!Is(item, "Sulfuras, Hand of Ragnaros"))
                             {
-                                IncreaseQuality(item, -1);
+                                IncreaseQuality(item, -1); // the normal case
                             }
                         }
                     }
                     else
                     {
-                        IncreaseQuality(item, -item.Quality);
+                        IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
                     }
                 }
                 else
                 {
                     if (HasQualityLowerThan(50, item))
                     {
-                        IncreaseQuality(item, 1);
+                        IncreaseQuality(item, 1); // aged brie quality
                     }
                 }
             }
@@ -100,6 +100,10 @@ public class GildedRose
     private bool HasQualityLowerThan(int treshold, Item item)
     {
         return item.Quality < treshold;
+    }
+
+    private bool SellDateExpired(Item item){
+        return SellInDateLowerThan(0, item);
     }
 
     private bool SellInDateLowerThan(int treshold, Item item){
