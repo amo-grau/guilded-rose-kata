@@ -18,31 +18,38 @@ public class GildedRose
     {
         foreach(var item in Items)
         {
-            if (Is(item, "Aged Brie") || Is(item, "Backstage passes to a TAFKAL80ETC concert") || Is(item, "Sulfuras, Hand of Ragnaros") || !HasPositiveQuality(item))
+            if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
             {
                 if (HasQualityLowerThan(50, item))
                 {
                     IncreaseQuality(item, 1);
 
-                    if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
+                    if (SellInDateLowerThan(11, item))
                     {
-                        if (SellInDateLowerThan(11, item))
+                        if (HasQualityLowerThan(50, item))
                         {
-                            if (HasQualityLowerThan(50, item))
-                            {
-                                IncreaseQuality(item, 1);
-                            }
+                            IncreaseQuality(item, 1);
                         }
+                    }
 
-                        if (SellInDateLowerThan(6, item))
+                    if (SellInDateLowerThan(6, item))
+                    {
+                        if (HasQualityLowerThan(50, item))
                         {
-                            if (HasQualityLowerThan(50, item))
-                            {
-                                IncreaseQuality(item, 1);
-                            }
+                            IncreaseQuality(item, 1);
                         }
                     }
                 }
+            }
+            else if (Is(item, "Aged Brie") || Is(item, "Sulfuras, Hand of Ragnaros"))
+            {
+                if (HasQualityLowerThan(50, item))
+                    IncreaseQuality(item, 1);   
+            }
+
+            else if (!HasPositiveQuality(item))
+            {
+                IncreaseQuality(item, 1); // this should set quality to 0   
             }
             else
             {
