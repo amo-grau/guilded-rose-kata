@@ -18,11 +18,9 @@ public class GildedRose
     {
         foreach(var item in Items)
         {
+            UpdateSellIn(item);
+
             IncreaseQualityForPositiveSellInDate(item);
-
-
-            if (!Is(item, "Sulfuras, Hand of Ragnaros"))
-                item.SellIn = item.SellIn - 1; // normal case
 
             if (SellDateExpired(item))
             {
@@ -57,6 +55,12 @@ public class GildedRose
 
     }
 
+    private void UpdateSellIn(Item item)
+    {
+        if (!Is(item, "Sulfuras, Hand of Ragnaros"))
+            item.SellIn = item.SellIn - 1; // normal case
+    }
+
     private void SetQualityInRange(Item item)
     {
         if (Is(item, "Sulfuras, Hand of Ragnaros"))
@@ -77,10 +81,10 @@ public class GildedRose
     {
         if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
         {
-            if (SellInDateLowerThan(6, item))
+            if (SellInDateLowerThan(5, item))
                 IncreaseQuality(item, 3);
 
-            else if (SellInDateLowerThan(11, item))
+            else if (SellInDateLowerThan(10, item))
                 IncreaseQuality(item, 2);
 
             else
