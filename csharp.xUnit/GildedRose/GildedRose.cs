@@ -52,12 +52,12 @@ public class GildedRose
                 }
             }
 
-            EnsureQualityInRange(item);
+            SetQualityInRange(item);
         }
 
     }
 
-    private void EnsureQualityInRange(Item item)
+    private void SetQualityInRange(Item item)
     {
         if (Is(item, "Sulfuras, Hand of Ragnaros"))
         {
