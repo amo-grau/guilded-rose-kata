@@ -28,25 +28,33 @@ public class GildedRose
 
                 else 
                     IncreaseQuality(item, 1);
-
-                if (item.Quality > 50)
-                    item.Quality = 50;
             }
-            else if (Is(item, "Aged Brie") || Is(item, "Sulfuras, Hand of Ragnaros"))
+            else if (Is(item, "Aged Brie"))
             {
-                if (HasQualityLowerThan(50, item))
-                    IncreaseQuality(item, 1);   
+                IncreaseQuality(item, 1);   
             }
-
+            else if (Is(item, "Sulfuras, Hand of Ragnaros"))
+            {
+            }
             else
             {
                 IncreaseQuality(item, -1); // that's the normal case!!
             }
 
-            if (!Is(item, "Sulfuras, Hand of Ragnaros"))
+            if (Is(item, "Sulfuras, Hand of Ragnaros"))
             {
-                item.SellIn = item.SellIn - 1; // normal case
+                if (item.Quality != 80)
+                    item.Quality = 80;
             }
+            else
+            {
+
+                if (item.Quality > 50)
+                    item.Quality = 50;
+            }
+            
+            if (!Is(item, "Sulfuras, Hand of Ragnaros"))
+                item.SellIn = item.SellIn - 1; // normal case
 
             if (SellDateExpired(item))
             {
