@@ -19,14 +19,15 @@ public class GildedRose
         foreach(var item in Items)
         {
             UpdateSellIn(item);
-            
-            QualityUpdate(item);
-
-            if (SellDatePassed(item))
-            {
+                        
+            if (SellDatePassed(item)) 
                 QualityUpdateForPassedDates(item);
-            }
 
+            else 
+            {
+                QualityUpdate(item);
+            }
+            
             SetQualityInRange(item);
         }
 
@@ -62,7 +63,7 @@ public class GildedRose
     {
         if (Is(item, "Aged Brie"))
         {
-            IncreaseQuality(item, 1);
+            IncreaseQuality(item, 2);
         }
         else if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
         {
@@ -74,7 +75,7 @@ public class GildedRose
         }
         else
         {
-            IncreaseQuality(item, -1);
+            IncreaseQuality(item, -2);
         }
     }
 
