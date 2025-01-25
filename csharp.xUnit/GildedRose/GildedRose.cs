@@ -31,21 +31,18 @@ public class GildedRose
                         IncreaseQuality(item, 1); // aged brie quality
                     }
                 }
+                else if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
+                {
+                    IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
+                }
                 else
                 {
-                    if (!Is(item, "Backstage passes to a TAFKAL80ETC concert"))
+                    if (HasPositiveQuality(item))
                     {
-                        if (HasPositiveQuality(item))
+                        if (!Is(item, "Sulfuras, Hand of Ragnaros"))
                         {
-                            if (!Is(item, "Sulfuras, Hand of Ragnaros"))
-                            {
-                                IncreaseQuality(item, -1); // the normal case
-                            }
+                            IncreaseQuality(item, -1); // the normal case
                         }
-                    }
-                    else
-                    {
-                        IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
                     }
                 }
 
