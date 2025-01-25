@@ -18,14 +18,7 @@ public class GildedRose
     {
         foreach(var item in Items)
         {
-            if (!Is(item, "Aged Brie") 
-                && !Is(item, "Backstage passes to a TAFKAL80ETC concert") 
-                && !Is(item, "Sulfuras, Hand of Ragnaros") 
-                && HasPositiveQuality(item))
-            {
-                IncreaseQuality(item, -1); // that's the normal case!!
-            }
-            else
+            if (Is(item, "Aged Brie") || Is(item, "Backstage passes to a TAFKAL80ETC concert") || Is(item, "Sulfuras, Hand of Ragnaros") || !HasPositiveQuality(item))
             {
                 if (HasQualityLowerThan(50, item))
                 {
@@ -50,6 +43,10 @@ public class GildedRose
                         }
                     }
                 }
+            }
+            else
+            {
+                IncreaseQuality(item, -1); // that's the normal case!!
             }
 
             if (!Is(item, "Sulfuras, Hand of Ragnaros"))
