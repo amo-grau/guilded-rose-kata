@@ -20,32 +20,36 @@ public class GildedRose
         {
             UpdateSellIn(item);
 
-            IncreaseQualityForPositiveSellInDate(item);
+            UpdateQualityForPositiveSellInDate(item);
 
             if (SellDateExpired(item))
             {
-                if (Is(item, "Aged Brie"))
-                {
-                    IncreaseQuality(item, 1);
-                }
-                else if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
-                {
-                    IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
-                }
-                else if (Is(item, "Sulfuras, Hand of Ragnaros"))
-                {
-                    // do nothing
-                }
-                else
-                {
-                    IncreaseQuality(item, -1);
-                }
-
+                UpdateQualityForExpiredSellDates(item);
             }
 
             SetQualityInRange(item);
         }
 
+    }
+
+    private void UpdateQualityForExpiredSellDates(Item item)
+    {
+        if (Is(item, "Aged Brie"))
+        {
+            IncreaseQuality(item, 1);
+        }
+        else if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
+        {
+            IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
+        }
+        else if (Is(item, "Sulfuras, Hand of Ragnaros"))
+        {
+            // do nothing
+        }
+        else
+        {
+            IncreaseQuality(item, -1);
+        }
     }
 
     private void UpdateSellIn(Item item)
@@ -70,7 +74,7 @@ public class GildedRose
         }
     }
 
-    private void IncreaseQualityForPositiveSellInDate(Item item)
+    private void UpdateQualityForPositiveSellInDate(Item item)
     {
         if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
         {
