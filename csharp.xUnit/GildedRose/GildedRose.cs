@@ -19,12 +19,12 @@ public class GildedRose
         foreach(var item in Items)
         {
             UpdateSellIn(item);
+            
+            QualityUpdate(item);
 
-            UpdateQualityForPositiveSellInDate(item);
-
-            if (SellDateExpired(item))
+            if (SellDatePassed(item))
             {
-                UpdateQualityForExpiredSellDates(item);
+                QualityUpdateForPassedDates(item);
             }
 
             SetQualityInRange(item);
@@ -32,7 +32,33 @@ public class GildedRose
 
     }
 
-    private void UpdateQualityForExpiredSellDates(Item item)
+    private void QualityUpdate(Item item)
+    {
+        if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
+        {
+            if (SellInDateLowerThan(5, item))
+                IncreaseQuality(item, 3);
+
+            else if (SellInDateLowerThan(10, item))
+                IncreaseQuality(item, 2);
+
+            else
+                IncreaseQuality(item, 1);
+        }
+        else if (Is(item, "Aged Brie"))
+        {
+            IncreaseQuality(item, 1);
+        }
+        else if (Is(item, "Sulfuras, Hand of Ragnaros"))
+        {
+        }
+        else
+        {
+            IncreaseQuality(item, -1); // that's the normal case!!
+        }
+    }
+
+    private void QualityUpdateForPassedDates(Item item)
     {
         if (Is(item, "Aged Brie"))
         {
@@ -74,32 +100,6 @@ public class GildedRose
         }
     }
 
-    private void UpdateQualityForPositiveSellInDate(Item item)
-    {
-        if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
-        {
-            if (SellInDateLowerThan(5, item))
-                IncreaseQuality(item, 3);
-
-            else if (SellInDateLowerThan(10, item))
-                IncreaseQuality(item, 2);
-
-            else
-                IncreaseQuality(item, 1);
-        }
-        else if (Is(item, "Aged Brie"))
-        {
-            IncreaseQuality(item, 1);
-        }
-        else if (Is(item, "Sulfuras, Hand of Ragnaros"))
-        {
-        }
-        else
-        {
-            IncreaseQuality(item, -1); // that's the normal case!!
-        }
-    }
-
     private bool Is(Item item, string type){
         return item.Name == type;
     }
@@ -114,7 +114,7 @@ public class GildedRose
         return item.Quality < treshold;
     }
 
-    private bool SellDateExpired(Item item){
+    private bool SellDatePassed(Item item){
         return SellInDateLowerThan(0, item);
     }
 
