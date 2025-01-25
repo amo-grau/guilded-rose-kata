@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
@@ -16,10 +17,10 @@ public class GildedRose
 
     public void UpdateQuality()
     {
+        Items.ToList().ForEach(UpdateSellIn);
+
         foreach(var item in Items)
         {
-            UpdateSellIn(item);
-                        
             if (SellDatePassed(item)) 
                 PassedDateUpdate(item);
 
