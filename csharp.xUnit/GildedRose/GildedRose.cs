@@ -26,24 +26,19 @@ public class GildedRose
             {
                 if (Is(item, "Aged Brie"))
                 {
-                    if (HasQualityLowerThan(50, item))
-                    {
-                        IncreaseQuality(item, 1); // aged brie quality
-                    }
+                    IncreaseQuality(item, 1);
                 }
                 else if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
                 {
                     IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
                 }
+                else if (Is(item, "Sulfuras, Hand of Ragnaros"))
+                {
+                    // do nothing
+                }
                 else
                 {
-                    if (HasPositiveQuality(item))
-                    {
-                        if (!Is(item, "Sulfuras, Hand of Ragnaros"))
-                        {
-                            IncreaseQuality(item, -1); // the normal case
-                        }
-                    }
+                    IncreaseQuality(item, -1);
                 }
 
             }
