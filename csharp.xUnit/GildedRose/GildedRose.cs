@@ -20,26 +20,17 @@ public class GildedRose
         {
             if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
             {
-                if (HasQualityLowerThan(50, item))
-                {
+                if (SellInDateLowerThan(6, item))
+                    IncreaseQuality(item, 3);
+
+                else if (SellInDateLowerThan(11, item))
+                    IncreaseQuality(item, 2);
+
+                else 
                     IncreaseQuality(item, 1);
 
-                    if (SellInDateLowerThan(11, item))
-                    {
-                        if (HasQualityLowerThan(50, item))
-                        {
-                            IncreaseQuality(item, 1);
-                        }
-                    }
-
-                    if (SellInDateLowerThan(6, item))
-                    {
-                        if (HasQualityLowerThan(50, item))
-                        {
-                            IncreaseQuality(item, 1);
-                        }
-                    }
-                }
+                if (item.Quality > 50)
+                    item.Quality = 50;
             }
             else if (Is(item, "Aged Brie") || Is(item, "Sulfuras, Hand of Ragnaros"))
             {
