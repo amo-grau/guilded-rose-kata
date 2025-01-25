@@ -21,19 +21,19 @@ public class GildedRose
             UpdateSellIn(item);
                         
             if (SellDatePassed(item)) 
-                QualityUpdateForPassedDates(item);
+                PassedDateUpdate(item);
 
             else 
             {
-                QualityUpdate(item);
+                Update(item);
             }
-            
+
             SetQualityInRange(item);
         }
 
     }
 
-    private void QualityUpdate(Item item)
+    private void Update(Item item)
     {
         if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
         {
@@ -59,7 +59,7 @@ public class GildedRose
         }
     }
 
-    private void QualityUpdateForPassedDates(Item item)
+    private void PassedDateUpdate(Item item)
     {
         if (Is(item, "Aged Brie"))
         {
