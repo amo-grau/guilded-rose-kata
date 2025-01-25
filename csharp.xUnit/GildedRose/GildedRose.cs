@@ -18,15 +18,12 @@ public class GildedRose
     {
         foreach(var item in Items)
         {
-            if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (!Is(item, "Aged Brie") 
+                && !Is(item, "Backstage passes to a TAFKAL80ETC concert") 
+                && !Is(item, "Sulfuras, Hand of Ragnaros") 
+                && HasPositiveQuality(item))
             {
-                if (HasPositiveQuality(item))
-                {
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        IncreaseQuality(item, -1); // that's the normal case!!
-                    }
-                }
+                IncreaseQuality(item, -1); // that's the normal case!!
             }
             else
             {
@@ -34,7 +31,7 @@ public class GildedRose
                 {
                     IncreaseQuality(item, 1);
 
-                    if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                    if (Is(item, "Backstage passes to a TAFKAL80ETC concert"))
                     {
                         if (SellInDateLowerThan(11, item))
                         {
@@ -55,20 +52,20 @@ public class GildedRose
                 }
             }
 
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
+            if (!Is(item, "Sulfuras, Hand of Ragnaros"))
             {
                 item.SellIn = item.SellIn - 1;
             }
 
             if (SellInDateLowerThan(0, item))
             {
-                if (item.Name != "Aged Brie")
+                if (!Is(item, "Aged Brie"))
                 {
-                    if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                    if (!Is(item, "Backstage passes to a TAFKAL80ETC concert"))
                     {
                         if (HasPositiveQuality(item))
                         {
-                            if (item.Name != "Sulfuras, Hand of Ragnaros")
+                            if (!Is(item, "Sulfuras, Hand of Ragnaros"))
                             {
                                 IncreaseQuality(item, -1);
                             }
@@ -89,6 +86,10 @@ public class GildedRose
             }
         }
 
+    }
+
+    private bool Is(Item item, string type){
+        return item.Name == type;
     }
 
     private bool HasPositiveQuality(Item item)
