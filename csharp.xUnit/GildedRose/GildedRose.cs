@@ -8,21 +8,17 @@ namespace GildedRoseKata;
 
 public class GildedRose
 {
-    IList<Item> Items;
-
     public GildedRose(IList<Item> Items)
     {
-        this.Items = Items;
+        this.Items = Items.ToList();
     }
+ 
+    List<Item> Items { get; }
 
     public void UpdateQuality()
     {
-        Items.ToList().ForEach(UpdateSellIn);
-
-        foreach(var item in Items)
-        {
-            UpdateItemQuality(item);
-        }
+        Items.ForEach(UpdateSellIn);
+        Items.ForEach(UpdateItemQuality);
     }
 
     private void UpdateItemQuality(Item item)
