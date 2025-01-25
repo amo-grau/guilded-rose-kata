@@ -24,7 +24,14 @@ public class GildedRose
 
             if (SellDateExpired(item))
             {
-                if (!Is(item, "Aged Brie"))
+                if (Is(item, "Aged Brie"))
+                {
+                    if (HasQualityLowerThan(50, item))
+                    {
+                        IncreaseQuality(item, 1); // aged brie quality
+                    }
+                }
+                else
                 {
                     if (!Is(item, "Backstage passes to a TAFKAL80ETC concert"))
                     {
@@ -41,13 +48,7 @@ public class GildedRose
                         IncreaseQuality(item, -item.Quality); // quality = 0 for outdated tickets
                     }
                 }
-                else
-                {
-                    if (HasQualityLowerThan(50, item))
-                    {
-                        IncreaseQuality(item, 1); // aged brie quality
-                    }
-                }
+
             }
 
             SetQualityInRange(item);
