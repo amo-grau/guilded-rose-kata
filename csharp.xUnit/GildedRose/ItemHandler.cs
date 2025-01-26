@@ -8,7 +8,7 @@ public class ItemHandler
         Item = item;
     }
 
-    private Item Item { get; set; }
+    protected Item Item { get; set; }
 
     protected virtual string Name { get => Item.Name; }
 
@@ -17,14 +17,9 @@ public class ItemHandler
         UpdateQuality();
     }
 
-    private void UpdateSellIn()
+    protected virtual void UpdateSellIn()
     {
-        if (Is("Sulfuras, Hand of Ragnaros")) 
-        {
-            // do nothing
-        }
-        else
-            Item.SellIn = Item.SellIn - 1;
+        Item.SellIn = Item.SellIn - 1;
     }
 
     private void UpdateQuality()
@@ -38,7 +33,7 @@ public class ItemHandler
         SetQualityInRange();
     }
 
-    private void DefaultQualityUpdate()
+    protected virtual void DefaultQualityUpdate()
     {
         if (Is("Backstage passes to a TAFKAL80ETC concert"))
         {
@@ -55,16 +50,13 @@ public class ItemHandler
         {
             IncreaseQuality(1);
         }
-        else if (Is("Sulfuras, Hand of Ragnaros"))
-        {
-        }
         else
         {
             IncreaseQuality(-1); // that's the normal case!!
         }
     }
 
-    private void PassedDateUpdate()
+    protected virtual void PassedDateUpdate()
     {
         if (Is("Aged Brie"))
         {
@@ -74,31 +66,19 @@ public class ItemHandler
         {
             IncreaseQuality(-Item.Quality); // quality = 0 for outdated tickets
         }
-        else if (Is("Sulfuras, Hand of Ragnaros"))
-        {
-            // do nothing
-        }
         else
         {
             IncreaseQuality(-2);
         }
     }
 
-    private void SetQualityInRange()
+    protected virtual void SetQualityInRange()
     {
-        if (Is("Sulfuras, Hand of Ragnaros"))
-        {
-            if (Item.Quality != 80)
-                Item.Quality = 80;
-        }
-        else
-        {
-            if (Item.Quality > 50)
-                Item.Quality = 50;
+        if (Item.Quality > 50)
+            Item.Quality = 50;
 
-            if (Item.Quality < 0)
-                Item.Quality = 0;
-        }
+        if (Item.Quality < 0)
+            Item.Quality = 0;
     }
 
     private bool SellInDateLowerThan(int treshold){
