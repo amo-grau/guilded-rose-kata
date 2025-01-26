@@ -8,4 +8,8 @@ public class ItemHandler
     }
 
     public Item Item { get; set; }
+    
+    public bool SellInDateLowerThan(int treshold){
+        return Item.SellIn < treshold;
+    }
 }

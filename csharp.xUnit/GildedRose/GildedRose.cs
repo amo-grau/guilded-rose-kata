@@ -39,10 +39,10 @@ public class GildedRose
     {
         if (Is(handler, "Backstage passes to a TAFKAL80ETC concert"))
         {
-            if (SellInDateLowerThan(5, handler))
+            if (handler.SellInDateLowerThan(5))
                 IncreaseQuality(handler, 3);
 
-            else if (SellInDateLowerThan(10, handler))
+            else if (handler.SellInDateLowerThan(10))
                 IncreaseQuality(handler, 2);
 
             else
@@ -113,11 +113,7 @@ public class GildedRose
     }
     
     private bool SellDatePassed(ItemHandler handler){
-        return SellInDateLowerThan(0, handler);
-    }
-
-    private bool SellInDateLowerThan(int treshold, ItemHandler handler){
-        return handler.Item.SellIn < treshold;
+        return handler.SellInDateLowerThan(0);
     }
 
     private Item IncreaseQuality(ItemHandler handler, int amount)
