@@ -5,7 +5,7 @@ public class DefaultHandler : ItemHandler
     private const int TopQualityRange = 50;
     private const int LowQualityRange = 0;
 
-    protected DefaultHandler(Item item)
+    public DefaultHandler(Item item)
     {
         Item = item;
     }
@@ -56,21 +56,5 @@ public class DefaultHandler : ItemHandler
 
         if (Item.Quality < LowQualityRange)
             Item.Quality = LowQualityRange;
-    }
-
-    public static DefaultHandler CreateFor(Item item) // todo: use type code instead of strings and use logic to make the types more abstract e.g. conjuredHandler instead of ConjuredManaCake handler"
-    {
-        switch(item.Name){
-            case "Aged Brie":
-                return new AgedBrieHandler(item);
-            case "Sulfuras, Hand of Ragnaros":
-                return new SulfurasHandler(item);
-            case "Backstage passes to a TAFKAL80ETC concert":
-                return new BackstageTicketsHandler(item);
-            case "Conjured Mana Cake":
-                return new ConjuredCakeHandler(item);
-            default:
-                return new DefaultHandler(item);
-        }
     }
 }
