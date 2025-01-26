@@ -26,6 +26,16 @@ public class ItemHandler
         }
     }
 
+    public void UpdateSellIn()
+    {
+        if (Is("Sulfuras, Hand of Ragnaros")) 
+        {
+            // do nothing
+        }
+        else
+            Item.SellIn = Item.SellIn - 1;
+    }
+
     public bool SellInDateLowerThan(int treshold){
         return Item.SellIn < treshold;
     }

@@ -20,7 +20,7 @@ public class GildedRose
 
     public void Update()
     {
-        Handlers.ForEach(UpdateSellIn);
+        Handlers.ForEach(h => h.UpdateSellIn());
         Handlers.ForEach(UpdateQuality);
     }
 
@@ -79,15 +79,5 @@ public class GildedRose
         {
             handler.IncreaseQuality(-2);
         }
-    }
-
-    private void UpdateSellIn(ItemHandler handler)
-    {
-        if (handler.Is("Sulfuras, Hand of Ragnaros")) 
-        {
-            // do nothing
-        }
-        else
-            handler.Item.SellIn = handler.Item.SellIn - 1;
     }
 }
