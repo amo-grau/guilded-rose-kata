@@ -2,13 +2,15 @@ using GildedRoseKata;
 
 public class ItemHandler
 {
-    public ItemHandler(Item item)
+    protected ItemHandler(Item item)
     {
         Item = item;
     }
 
     private Item Item { get; set; }
-    
+
+    protected virtual string Name { get => Item.Name; }
+
     public void Update(){
         UpdateSellIn();
         UpdateQuality();
@@ -114,5 +116,10 @@ public class ItemHandler
     {
         Item.Quality += amount;
         return Item;
+    }
+
+    public static ItemHandler CreateFor(Item item)
+    {
+        return new ItemHandler(item);
     }
 }
