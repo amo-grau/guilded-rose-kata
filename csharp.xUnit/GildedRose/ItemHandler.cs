@@ -9,6 +9,32 @@ public class ItemHandler
 
     public Item Item { get; set; }
     
+    public void DefaultQualityUpdate()
+    {
+        if (Is("Backstage passes to a TAFKAL80ETC concert"))
+        {
+            if (SellInDateLowerThan(5))
+                IncreaseQuality(3);
+
+            else if (SellInDateLowerThan(10))
+                IncreaseQuality(2);
+
+            else
+                IncreaseQuality(1);
+        }
+        else if (Is("Aged Brie"))
+        {
+            IncreaseQuality(1);
+        }
+        else if (Is("Sulfuras, Hand of Ragnaros"))
+        {
+        }
+        else
+        {
+            IncreaseQuality(-1); // that's the normal case!!
+        }
+    }
+
     public void PassedDateUpdate()
     {
         if (Is("Aged Brie"))

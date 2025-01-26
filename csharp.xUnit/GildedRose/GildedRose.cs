@@ -30,34 +30,8 @@ public class GildedRose
             handler.PassedDateUpdate();
 
         else
-            Update(handler);
+            handler.DefaultQualityUpdate();;
 
         handler.SetQualityInRange();
-    }
-
-    private void Update(ItemHandler handler)
-    {
-        if (handler.Is("Backstage passes to a TAFKAL80ETC concert"))
-        {
-            if (handler.SellInDateLowerThan(5))
-                handler.IncreaseQuality(3);
-
-            else if (handler.SellInDateLowerThan(10))
-                handler.IncreaseQuality(2);
-
-            else
-                handler.IncreaseQuality(1);
-        }
-        else if (handler.Is("Aged Brie"))
-        {
-            handler.IncreaseQuality(1);
-        }
-        else if (handler.Is("Sulfuras, Hand of Ragnaros"))
-        {
-        }
-        else
-        {
-            handler.IncreaseQuality(-1); // that's the normal case!!
-        }
     }
 }
