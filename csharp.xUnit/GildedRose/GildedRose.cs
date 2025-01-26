@@ -40,24 +40,24 @@ public class GildedRose
         if (handler.Is("Backstage passes to a TAFKAL80ETC concert"))
         {
             if (handler.SellInDateLowerThan(5))
-                IncreaseQuality(handler, 3);
+                handler.IncreaseQuality(3);
 
             else if (handler.SellInDateLowerThan(10))
-                IncreaseQuality(handler, 2);
+                handler.IncreaseQuality(2);
 
             else
-                IncreaseQuality(handler, 1);
+                handler.IncreaseQuality(1);
         }
         else if (handler.Is("Aged Brie"))
         {
-            IncreaseQuality(handler, 1);
+            handler.IncreaseQuality(1);
         }
         else if (handler.Is("Sulfuras, Hand of Ragnaros"))
         {
         }
         else
         {
-            IncreaseQuality(handler, -1); // that's the normal case!!
+            handler.IncreaseQuality(-1); // that's the normal case!!
         }
     }
 
@@ -65,11 +65,11 @@ public class GildedRose
     {
         if (handler.Is("Aged Brie"))
         {
-            IncreaseQuality(handler, 2);
+            handler.IncreaseQuality(2);
         }
         else if (handler.Is("Backstage passes to a TAFKAL80ETC concert"))
         {
-            IncreaseQuality(handler, -handler.Item.Quality); // quality = 0 for outdated tickets
+            handler.IncreaseQuality(-handler.Item.Quality); // quality = 0 for outdated tickets
         }
         else if (handler.Is("Sulfuras, Hand of Ragnaros"))
         {
@@ -77,7 +77,7 @@ public class GildedRose
         }
         else
         {
-            IncreaseQuality(handler, -2);
+            handler.IncreaseQuality(-2);
         }
     }
 
@@ -106,12 +106,5 @@ public class GildedRose
             if (handler.Item.Quality < 0)
                 handler.Item.Quality = 0;
         }
-    }
-    
-    private Item IncreaseQuality(ItemHandler handler, int amount)
-    {
-        var result = handler.Item;
-        result.Quality += amount;
-        return result;
     }
 }

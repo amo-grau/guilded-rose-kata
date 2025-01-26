@@ -20,4 +20,10 @@ public class ItemHandler
     public bool Is(string type){
         return Item.Name == type;
     }
+
+    public Item IncreaseQuality(int amount)
+    {
+        Item.Quality += amount;
+        return Item;
+    }
 }
