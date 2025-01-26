@@ -37,7 +37,7 @@ public class GildedRose
 
     private void Update(ItemHandler handler)
     {
-        if (Is(handler, "Backstage passes to a TAFKAL80ETC concert"))
+        if (handler.Is("Backstage passes to a TAFKAL80ETC concert"))
         {
             if (handler.SellInDateLowerThan(5))
                 IncreaseQuality(handler, 3);
@@ -48,11 +48,11 @@ public class GildedRose
             else
                 IncreaseQuality(handler, 1);
         }
-        else if (Is(handler, "Aged Brie"))
+        else if (handler.Is("Aged Brie"))
         {
             IncreaseQuality(handler, 1);
         }
-        else if (Is(handler, "Sulfuras, Hand of Ragnaros"))
+        else if (handler.Is("Sulfuras, Hand of Ragnaros"))
         {
         }
         else
@@ -63,15 +63,15 @@ public class GildedRose
 
     private void PassedDateUpdate(ItemHandler handler)
     {
-        if (Is(handler, "Aged Brie"))
+        if (handler.Is("Aged Brie"))
         {
             IncreaseQuality(handler, 2);
         }
-        else if (Is(handler, "Backstage passes to a TAFKAL80ETC concert"))
+        else if (handler.Is("Backstage passes to a TAFKAL80ETC concert"))
         {
             IncreaseQuality(handler, -handler.Item.Quality); // quality = 0 for outdated tickets
         }
-        else if (Is(handler, "Sulfuras, Hand of Ragnaros"))
+        else if (handler.Is("Sulfuras, Hand of Ragnaros"))
         {
             // do nothing
         }
@@ -83,7 +83,7 @@ public class GildedRose
 
     private void UpdateSellIn(ItemHandler handler)
     {
-        if (Is(handler, "Sulfuras, Hand of Ragnaros")) 
+        if (handler.Is("Sulfuras, Hand of Ragnaros")) 
         {
             // do nothing
         }
@@ -93,7 +93,7 @@ public class GildedRose
 
     private void SetQualityInRange(ItemHandler handler)
     {
-        if (Is(handler, "Sulfuras, Hand of Ragnaros"))
+        if (handler.Is("Sulfuras, Hand of Ragnaros"))
         {
             if (handler.Item.Quality != 80)
                 handler.Item.Quality = 80;
@@ -107,11 +107,7 @@ public class GildedRose
                 handler.Item.Quality = 0;
         }
     }
-
-    private bool Is(ItemHandler handler, string type){
-        return handler.Item.Name == type;
-    }
-
+    
     private Item IncreaseQuality(ItemHandler handler, int amount)
     {
         var result = handler.Item;

@@ -16,4 +16,8 @@ public class ItemHandler
     public bool SellDatePassed(){
         return SellInDateLowerThan(0);
     }
+
+    public bool Is(string type){
+        return Item.Name == type;
+    }
 }
