@@ -26,7 +26,8 @@ public class ApprovalTest
             new Item { Name= "Backstage passes to a TAFKAL80ETC concert", SellIn=15, Quality=20 },
             new Item { Name= "Backstage passes to a TAFKAL80ETC concert", SellIn=10, Quality=49 },
             new Item { Name= "Backstage passes to a TAFKAL80ETC concert", SellIn=5, Quality=49 },
-            new Item { Name= "Conjured Mana Cake", SellIn=3, Quality=6 }
+            new Item { Name= "Conjured Mana Cake", SellIn=3, Quality=6 },
+            new Item { Name= "Conjured Mana Cake", SellIn=0, Quality=5 }
             };
         GildedRose app = new GildedRose(items);
         app.Update();
