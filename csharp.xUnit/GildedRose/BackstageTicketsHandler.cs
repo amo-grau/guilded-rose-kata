@@ -11,17 +11,20 @@ public class BackstageTicketsHandler : ItemHandler
     protected override void DefaultQualityUpdate()
     {
         if (SellInDateLowerThan(5))
-            IncreaseQuality(3);
-
+            Item.Quality += 3;
         else if (SellInDateLowerThan(10))
-            IncreaseQuality(2);
+            Item.Quality += 2;
 
         else
-            IncreaseQuality(1);
+            Item.Quality += 1;
     }
 
     protected override void PassedDateUpdate()
     {
-        IncreaseQuality(-Item.Quality); // quality = 0 for outdated tickets
+        Item.Quality = 0;
+    }
+
+    private bool SellInDateLowerThan(int treshold){
+        return Item.SellIn < treshold;
     }
 }

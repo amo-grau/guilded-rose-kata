@@ -3,6 +3,9 @@ using GildedRoseKata;
 
 public class ItemHandler
 {
+    private const int TopQualityRange = 50;
+    private const int LowQualityRange = 0;
+
     protected ItemHandler(Item item)
     {
         Item = item;
@@ -35,35 +38,25 @@ public class ItemHandler
 
     protected virtual void DefaultQualityUpdate()
     {
-        IncreaseQuality(-1); // that's the normal case!!
+        Item.Quality -= 1;
     }
 
     protected virtual void PassedDateUpdate()
     {
-        IncreaseQuality(-2);
+        Item.Quality -= 2;
     }
 
     protected virtual void SetQualityInRange()
     {
-        if (Item.Quality > 50)
-            Item.Quality = 50;
+        if (Item.Quality > TopQualityRange)
+            Item.Quality = TopQualityRange;
 
-        if (Item.Quality < 0)
-            Item.Quality = 0;
-    }
-
-    protected bool SellInDateLowerThan(int treshold){
-        return Item.SellIn < treshold;
+        if (Item.Quality < LowQualityRange)
+            Item.Quality = LowQualityRange;
     }
 
     private bool SellDatePassed(){
-        return SellInDateLowerThan(0);
-    }
-
-    protected Item IncreaseQuality(int amount)
-    {
-        Item.Quality += amount;
-        return Item;
+        return Item.SellIn < 0;
     }
 
     public static ItemHandler CreateFor(Item item)

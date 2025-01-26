@@ -10,11 +10,11 @@ public class AgedBrieHandler : ItemHandler
 
     protected override void DefaultQualityUpdate()
     {
-        IncreaseQuality(1);
+        Item.Quality += 1;
     }
 
     protected override void PassedDateUpdate()
     {
-        IncreaseQuality(2);
+        Item.Quality += 2;
     }
 }
