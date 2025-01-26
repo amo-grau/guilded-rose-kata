@@ -9,8 +9,12 @@ public class ItemHandler
 
     private Item Item { get; set; }
     
+    public void Update(){
+        UpdateSellIn();
+        UpdateQuality();
+    }
 
-    public void UpdateSellIn()
+    private void UpdateSellIn()
     {
         if (Is("Sulfuras, Hand of Ragnaros")) 
         {
@@ -20,7 +24,7 @@ public class ItemHandler
             Item.SellIn = Item.SellIn - 1;
     }
 
-    public void UpdateQuality()
+    private void UpdateQuality()
     {
         if (SellDatePassed())
             PassedDateUpdate();

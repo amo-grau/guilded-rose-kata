@@ -20,7 +20,6 @@ public class GildedRose
 
     public void Update()
     {
-        Handlers.ForEach(h => h.UpdateSellIn());
-        Handlers.ForEach(h => h.UpdateQuality());
+        Handlers.ForEach(h => h.Update());
     }
 }
