@@ -1,6 +1,6 @@
 using GildedRoseKata;
 
-public class SulfurasHandler : ItemHandler
+public class SulfurasHandler : DefaultHandler
 {
     private const int QualityValue = 80;
 

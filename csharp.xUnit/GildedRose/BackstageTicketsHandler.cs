@@ -1,6 +1,6 @@
 using GildedRoseKata;
 
-public class BackstageTicketsHandler : ItemHandler
+public class BackstageTicketsHandler : DefaultHandler
 {
     public BackstageTicketsHandler(Item item) : base(item)
     {

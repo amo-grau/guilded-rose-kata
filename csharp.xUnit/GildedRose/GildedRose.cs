@@ -11,7 +11,7 @@ public class GildedRose
     }
  
     IList<Item> Items { get; }
-    private List<ItemHandler> Handlers { get => Items.Select(ItemHandler.CreateFor).ToList(); }
+    private List<DefaultHandler> Handlers { get => Items.Select(DefaultHandler.CreateFor).ToList(); }
 
     public void Update()
     {

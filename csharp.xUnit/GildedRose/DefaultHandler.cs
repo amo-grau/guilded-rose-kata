@@ -1,11 +1,11 @@
 using GildedRoseKata;
 
-public class ItemHandler
+public class DefaultHandler : ItemHandler
 {
     private const int TopQualityRange = 50;
     private const int LowQualityRange = 0;
 
-    protected ItemHandler(Item item)
+    protected DefaultHandler(Item item)
     {
         Item = item;
     }
@@ -58,7 +58,7 @@ public class ItemHandler
             Item.Quality = LowQualityRange;
     }
 
-    public static ItemHandler CreateFor(Item item) // todo: use type code instead of strings and use logic to make the types more abstract e.g. conjuredHandler instead of ConjuredManaCake handler"
+    public static DefaultHandler CreateFor(Item item) // todo: use type code instead of strings and use logic to make the types more abstract e.g. conjuredHandler instead of ConjuredManaCake handler"
     {
         switch(item.Name){
             case "Aged Brie":
@@ -70,7 +70,7 @@ public class ItemHandler
             case "Conjured Mana Cake":
                 return new ConjuredCakeHandler(item);
             default:
-                return new ItemHandler(item);
+                return new DefaultHandler(item);
         }
     }
 }

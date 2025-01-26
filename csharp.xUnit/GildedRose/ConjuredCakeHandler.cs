@@ -1,6 +1,6 @@
 using GildedRoseKata;
 
-public class ConjuredCakeHandler : ItemHandler
+public class ConjuredCakeHandler : DefaultHandler
 {
     public ConjuredCakeHandler(Item item) : base(item)
     {

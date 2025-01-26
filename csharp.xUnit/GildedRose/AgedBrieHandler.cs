@@ -1,6 +1,6 @@
 using GildedRoseKata;
 
-public class AgedBrieHandler : ItemHandler
+public class AgedBrieHandler : DefaultHandler
 {
     public AgedBrieHandler(Item item) : base(item)
     {
