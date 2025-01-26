@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -80,8 +81,12 @@ public class GildedRose
 
     private void UpdateSellIn(Item item)
     {
-        if (!Is(item, "Sulfuras, Hand of Ragnaros"))
-            item.SellIn = item.SellIn - 1; // normal case
+        if (Is(item, "Sulfuras, Hand of Ragnaros")) 
+        {
+            // do nothing
+        }
+        else
+            item.SellIn = item.SellIn - 1;
     }
 
     private void SetQualityInRange(Item item)
