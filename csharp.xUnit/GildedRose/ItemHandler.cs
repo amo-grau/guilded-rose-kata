@@ -7,8 +7,19 @@ public class ItemHandler
         Item = item;
     }
 
-    public Item Item { get; set; }
+    private Item Item { get; set; }
     
+
+    public void UpdateSellIn()
+    {
+        if (Is("Sulfuras, Hand of Ragnaros")) 
+        {
+            // do nothing
+        }
+        else
+            Item.SellIn = Item.SellIn - 1;
+    }
+
     public void UpdateQuality()
     {
         if (SellDatePassed())
@@ -20,7 +31,7 @@ public class ItemHandler
         SetQualityInRange();
     }
 
-    public void DefaultQualityUpdate()
+    private void DefaultQualityUpdate()
     {
         if (Is("Backstage passes to a TAFKAL80ETC concert"))
         {
@@ -46,7 +57,7 @@ public class ItemHandler
         }
     }
 
-    public void PassedDateUpdate()
+    private void PassedDateUpdate()
     {
         if (Is("Aged Brie"))
         {
@@ -66,7 +77,7 @@ public class ItemHandler
         }
     }
 
-    public void SetQualityInRange()
+    private void SetQualityInRange()
     {
         if (Is("Sulfuras, Hand of Ragnaros"))
         {
@@ -83,29 +94,19 @@ public class ItemHandler
         }
     }
 
-    public void UpdateSellIn()
-    {
-        if (Is("Sulfuras, Hand of Ragnaros")) 
-        {
-            // do nothing
-        }
-        else
-            Item.SellIn = Item.SellIn - 1;
-    }
-
-    public bool SellInDateLowerThan(int treshold){
+    private bool SellInDateLowerThan(int treshold){
         return Item.SellIn < treshold;
     }
 
-    public bool SellDatePassed(){
+    private bool SellDatePassed(){
         return SellInDateLowerThan(0);
     }
 
-    public bool Is(string type){
+    private bool Is(string type){
         return Item.Name == type;
     }
 
-    public Item IncreaseQuality(int amount)
+    private Item IncreaseQuality(int amount)
     {
         Item.Quality += amount;
         return Item;
