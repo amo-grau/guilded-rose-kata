@@ -46,10 +46,6 @@ public class ItemHandler
             else
                 IncreaseQuality(1);
         }
-        else if (Is("Aged Brie"))
-        {
-            IncreaseQuality(1);
-        }
         else
         {
             IncreaseQuality(-1); // that's the normal case!!
@@ -58,11 +54,7 @@ public class ItemHandler
 
     protected virtual void PassedDateUpdate()
     {
-        if (Is("Aged Brie"))
-        {
-            IncreaseQuality(2);
-        }
-        else if (Is("Backstage passes to a TAFKAL80ETC concert"))
+        if (Is("Backstage passes to a TAFKAL80ETC concert"))
         {
             IncreaseQuality(-Item.Quality); // quality = 0 for outdated tickets
         }
@@ -93,7 +85,7 @@ public class ItemHandler
         return Name == type;
     }
 
-    private Item IncreaseQuality(int amount)
+    protected Item IncreaseQuality(int amount)
     {
         Item.Quality += amount;
         return Item;
