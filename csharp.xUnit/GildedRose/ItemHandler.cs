@@ -9,6 +9,17 @@ public class ItemHandler
 
     public Item Item { get; set; }
     
+    public void UpdateQuality()
+    {
+        if (SellDatePassed())
+            PassedDateUpdate();
+
+        else
+            DefaultQualityUpdate();;
+
+        SetQualityInRange();
+    }
+
     public void DefaultQualityUpdate()
     {
         if (Is("Backstage passes to a TAFKAL80ETC concert"))

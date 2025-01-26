@@ -21,17 +21,6 @@ public class GildedRose
     public void Update()
     {
         Handlers.ForEach(h => h.UpdateSellIn());
-        Handlers.ForEach(UpdateQuality);
-    }
-
-    public void UpdateQuality(ItemHandler handler)
-    {
-        if (handler.SellDatePassed())
-            handler.PassedDateUpdate();
-
-        else
-            handler.DefaultQualityUpdate();;
-
-        handler.SetQualityInRange();
+        Handlers.ForEach(h => h.UpdateQuality());
     }
 }
