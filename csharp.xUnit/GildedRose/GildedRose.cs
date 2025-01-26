@@ -13,16 +13,15 @@ public class GildedRose
     public GildedRose(IList<Item> Items)
     {
         this.Items = Items.ToList();
-        ItemHandlers = this.Items.Select(item => new ItemHandler(item)).ToList();
     }
  
-    List<Item> Items { get; }
-    List<ItemHandler> ItemHandlers { get; }
+    IList<Item> Items { get; }
+    List<ItemHandler> Handlers { get => Items.Select(item => new ItemHandler(item)).ToList(); }
 
     public void Update()
     {
-        ItemHandlers.ForEach(UpdateSellIn);
-        ItemHandlers.ForEach(UpdateQuality);
+        Handlers.ForEach(UpdateSellIn);
+        Handlers.ForEach(UpdateQuality);
     }
 
     public void UpdateQuality(ItemHandler handler)
