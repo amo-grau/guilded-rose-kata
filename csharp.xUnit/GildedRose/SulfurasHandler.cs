@@ -1,5 +1,3 @@
-using System.Data;
-using System.Net.Http.Headers;
 using GildedRoseKata;
 
 public class SulfurasHandler : ItemHandler
@@ -14,7 +12,7 @@ public class SulfurasHandler : ItemHandler
 
     protected override void UpdateSellIn() { }
     protected override void PassedDateUpdate() { }
-    protected override void DefaultQualityUpdate() {}
+    protected override void DefaultQualityUpdate() { }
     protected override void SetQualityInRange()
     {
         if (Item.Quality != QualityValue) 

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using GildedRoseKata;
 
 public class ItemHandler
