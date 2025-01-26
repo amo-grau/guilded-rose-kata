@@ -32,7 +32,7 @@ public class GildedRose
         else
             Update(handler);
 
-        SetQualityInRange(handler);
+        handler.SetQualityInRange();
     }
 
     private void Update(ItemHandler handler)
@@ -89,22 +89,5 @@ public class GildedRose
         }
         else
             handler.Item.SellIn = handler.Item.SellIn - 1;
-    }
-
-    private void SetQualityInRange(ItemHandler handler)
-    {
-        if (handler.Is("Sulfuras, Hand of Ragnaros"))
-        {
-            if (handler.Item.Quality != 80)
-                handler.Item.Quality = 80;
-        }
-        else
-        {
-            if (handler.Item.Quality > 50)
-                handler.Item.Quality = 50;
-
-            if (handler.Item.Quality < 0)
-                handler.Item.Quality = 0;
-        }
     }
 }
