@@ -67,6 +67,8 @@ public class ItemHandler
                 return new SulfurasHandler(item);
             case "Backstage passes to a TAFKAL80ETC concert":
                 return new BackstageTicketsHandler(item);
+            case "Conjured Mana Cake":
+                return new ConjuredCakeHandler(item);
             default:
                 return new ItemHandler(item);
         }
