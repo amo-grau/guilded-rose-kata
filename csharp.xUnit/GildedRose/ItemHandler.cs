@@ -9,6 +9,26 @@ public class ItemHandler
 
     public Item Item { get; set; }
     
+    public void PassedDateUpdate()
+    {
+        if (Is("Aged Brie"))
+        {
+            IncreaseQuality(2);
+        }
+        else if (Is("Backstage passes to a TAFKAL80ETC concert"))
+        {
+            IncreaseQuality(-Item.Quality); // quality = 0 for outdated tickets
+        }
+        else if (Is("Sulfuras, Hand of Ragnaros"))
+        {
+            // do nothing
+        }
+        else
+        {
+            IncreaseQuality(-2);
+        }
+    }
+
     public void SetQualityInRange()
     {
         if (Is("Sulfuras, Hand of Ragnaros"))

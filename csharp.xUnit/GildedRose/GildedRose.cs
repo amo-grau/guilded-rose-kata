@@ -27,7 +27,7 @@ public class GildedRose
     public void UpdateQuality(ItemHandler handler)
     {
         if (handler.SellDatePassed())
-            PassedDateUpdate(handler);
+            handler.PassedDateUpdate();
 
         else
             Update(handler);
@@ -58,26 +58,6 @@ public class GildedRose
         else
         {
             handler.IncreaseQuality(-1); // that's the normal case!!
-        }
-    }
-
-    private void PassedDateUpdate(ItemHandler handler)
-    {
-        if (handler.Is("Aged Brie"))
-        {
-            handler.IncreaseQuality(2);
-        }
-        else if (handler.Is("Backstage passes to a TAFKAL80ETC concert"))
-        {
-            handler.IncreaseQuality(-handler.Item.Quality); // quality = 0 for outdated tickets
-        }
-        else if (handler.Is("Sulfuras, Hand of Ragnaros"))
-        {
-            // do nothing
-        }
-        else
-        {
-            handler.IncreaseQuality(-2);
         }
     }
 }
