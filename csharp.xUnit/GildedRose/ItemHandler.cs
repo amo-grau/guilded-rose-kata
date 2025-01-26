@@ -58,7 +58,7 @@ public class ItemHandler
             Item.Quality = LowQualityRange;
     }
 
-    public static ItemHandler CreateFor(Item item)
+    public static ItemHandler CreateFor(Item item) // todo: use type code instead of strings and use logic to make the types more abstract e.g. conjuredHandler instead of ConjuredManaCake handler"
     {
         switch(item.Name){
             case "Aged Brie":
