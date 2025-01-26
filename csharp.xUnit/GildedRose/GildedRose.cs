@@ -21,76 +21,70 @@ public class GildedRose
 
     public void Update()
     {
-        var items = ItemHandlers.Select(handler=> handler.Item).ToList();
-        items.ForEach(UpdateSellIn);
+        ItemHandlers.ForEach(UpdateSellIn);
         ItemHandlers.ForEach(UpdateQuality);
     }
 
     public void UpdateQuality(ItemHandler handler)
     {
-        if (SellDatePassed(handler.Item))
-            PassedDateUpdate(handler.Item);
+        if (SellDatePassed(handler))
+            PassedDateUpdate(handler);
 
         else
-            Update(handler.Item);
+            Update(handler);
 
-        SetQualityInRange(handler.Item);
+        SetQualityInRange(handler);
     }
 
-    private void Update(Item item)
+    private void Update(ItemHandler handler)
     {
-        var handler = new ItemHandler(item);
-
-        if (Is(handler.Item, "Backstage passes to a TAFKAL80ETC concert"))
+        if (Is(handler, "Backstage passes to a TAFKAL80ETC concert"))
         {
-            if (SellInDateLowerThan(5, handler.Item))
-                IncreaseQuality(handler.Item, 3);
+            if (SellInDateLowerThan(5, handler))
+                IncreaseQuality(handler, 3);
 
-            else if (SellInDateLowerThan(10, handler.Item))
-                IncreaseQuality(handler.Item, 2);
+            else if (SellInDateLowerThan(10, handler))
+                IncreaseQuality(handler, 2);
 
             else
-                IncreaseQuality(handler.Item, 1);
+                IncreaseQuality(handler, 1);
         }
-        else if (Is(handler.Item, "Aged Brie"))
+        else if (Is(handler, "Aged Brie"))
         {
-            IncreaseQuality(handler.Item, 1);
+            IncreaseQuality(handler, 1);
         }
-        else if (Is(handler.Item, "Sulfuras, Hand of Ragnaros"))
+        else if (Is(handler, "Sulfuras, Hand of Ragnaros"))
         {
         }
         else
         {
-            IncreaseQuality(handler.Item, -1); // that's the normal case!!
+            IncreaseQuality(handler, -1); // that's the normal case!!
         }
     }
 
-    private void PassedDateUpdate(Item item)
+    private void PassedDateUpdate(ItemHandler handler)
     {
-        var handler = new ItemHandler(item);
-
-        if (Is(handler.Item, "Aged Brie"))
+        if (Is(handler, "Aged Brie"))
         {
-            IncreaseQuality(handler.Item, 2);
+            IncreaseQuality(handler, 2);
         }
-        else if (Is(handler.Item, "Backstage passes to a TAFKAL80ETC concert"))
+        else if (Is(handler, "Backstage passes to a TAFKAL80ETC concert"))
         {
-            IncreaseQuality(handler.Item, -item.Quality); // quality = 0 for outdated tickets
+            IncreaseQuality(handler, -handler.Item.Quality); // quality = 0 for outdated tickets
         }
-        else if (Is(handler.Item, "Sulfuras, Hand of Ragnaros"))
+        else if (Is(handler, "Sulfuras, Hand of Ragnaros"))
         {
             // do nothing
         }
         else
         {
-            IncreaseQuality(handler.Item, -2);
+            IncreaseQuality(handler, -2);
         }
     }
 
-    private void UpdateSellIn(Item item)
+    private void UpdateSellIn(ItemHandler handler)
     {
-        var handler = new ItemHandler(item);
-        if (Is(handler.Item, "Sulfuras, Hand of Ragnaros")) 
+        if (Is(handler, "Sulfuras, Hand of Ragnaros")) 
         {
             // do nothing
         }
@@ -98,10 +92,9 @@ public class GildedRose
             handler.Item.SellIn = handler.Item.SellIn - 1;
     }
 
-    private void SetQualityInRange(Item item)
+    private void SetQualityInRange(ItemHandler handler)
     {
-        var handler = new ItemHandler(item);
-        if (Is(handler.Item, "Sulfuras, Hand of Ragnaros"))
+        if (Is(handler, "Sulfuras, Hand of Ragnaros"))
         {
             if (handler.Item.Quality != 80)
                 handler.Item.Quality = 80;
@@ -116,24 +109,20 @@ public class GildedRose
         }
     }
 
-    private bool Is(Item item, string type){
-        var handler = new ItemHandler(item);
+    private bool Is(ItemHandler handler, string type){
         return handler.Item.Name == type;
     }
     
-    private bool SellDatePassed(Item item){
-        var handler = new ItemHandler(item);
-        return SellInDateLowerThan(0, handler.Item);
+    private bool SellDatePassed(ItemHandler handler){
+        return SellInDateLowerThan(0, handler);
     }
 
-    private bool SellInDateLowerThan(int treshold, Item item){
-        var handler = new ItemHandler(item);
+    private bool SellInDateLowerThan(int treshold, ItemHandler handler){
         return handler.Item.SellIn < treshold;
     }
 
-    private Item IncreaseQuality(Item item, int amount)
+    private Item IncreaseQuality(ItemHandler handler, int amount)
     {
-        var handler = new ItemHandler(item);
         var result = handler.Item;
         result.Quality += amount;
         return result;
