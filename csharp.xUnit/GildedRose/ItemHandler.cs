@@ -12,4 +12,8 @@ public class ItemHandler
     public bool SellInDateLowerThan(int treshold){
         return Item.SellIn < treshold;
     }
+
+    public bool SellDatePassed(){
+        return SellInDateLowerThan(0);
+    }
 }

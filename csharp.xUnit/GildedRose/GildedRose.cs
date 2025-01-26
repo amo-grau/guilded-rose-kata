@@ -26,7 +26,7 @@ public class GildedRose
 
     public void UpdateQuality(ItemHandler handler)
     {
-        if (SellDatePassed(handler))
+        if (handler.SellDatePassed())
             PassedDateUpdate(handler);
 
         else
@@ -110,10 +110,6 @@ public class GildedRose
 
     private bool Is(ItemHandler handler, string type){
         return handler.Item.Name == type;
-    }
-    
-    private bool SellDatePassed(ItemHandler handler){
-        return handler.SellInDateLowerThan(0);
     }
 
     private Item IncreaseQuality(ItemHandler handler, int amount)
