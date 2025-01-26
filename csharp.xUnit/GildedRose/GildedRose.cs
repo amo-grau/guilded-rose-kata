@@ -23,12 +23,11 @@ public class GildedRose
     {
         var items = ItemHandlers.Select(handler=> handler.Item).ToList();
         items.ForEach(UpdateSellIn);
-        items.ForEach(UpdateQuality);
+        ItemHandlers.ForEach(UpdateQuality);
     }
 
-    private void UpdateQuality(Item item)
+    public void UpdateQuality(ItemHandler handler)
     {
-        var handler = new ItemHandler(item);
         if (SellDatePassed(handler.Item))
             PassedDateUpdate(handler.Item);
 

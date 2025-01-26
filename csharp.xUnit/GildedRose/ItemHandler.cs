@@ -1,6 +1,6 @@
 using GildedRoseKata;
 
-class ItemHandler
+public class ItemHandler
 {
     public ItemHandler(Item item)
     {
