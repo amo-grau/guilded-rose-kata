@@ -12,7 +12,7 @@ public class GildedRose
 {
     public GildedRose(IList<Item> Items)
     {
-        this.Items = Items.ToList();
+        this.Items = Items;
     }
  
     IList<Item> Items { get; }
