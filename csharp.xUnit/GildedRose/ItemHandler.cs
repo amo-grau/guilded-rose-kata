@@ -35,33 +35,12 @@ public class ItemHandler
 
     protected virtual void DefaultQualityUpdate()
     {
-        if (Is("Backstage passes to a TAFKAL80ETC concert"))
-        {
-            if (SellInDateLowerThan(5))
-                IncreaseQuality(3);
-
-            else if (SellInDateLowerThan(10))
-                IncreaseQuality(2);
-
-            else
-                IncreaseQuality(1);
-        }
-        else
-        {
-            IncreaseQuality(-1); // that's the normal case!!
-        }
+        IncreaseQuality(-1); // that's the normal case!!
     }
 
     protected virtual void PassedDateUpdate()
     {
-        if (Is("Backstage passes to a TAFKAL80ETC concert"))
-        {
-            IncreaseQuality(-Item.Quality); // quality = 0 for outdated tickets
-        }
-        else
-        {
-            IncreaseQuality(-2);
-        }
+        IncreaseQuality(-2);
     }
 
     protected virtual void SetQualityInRange()
@@ -73,16 +52,12 @@ public class ItemHandler
             Item.Quality = 0;
     }
 
-    private bool SellInDateLowerThan(int treshold){
+    protected bool SellInDateLowerThan(int treshold){
         return Item.SellIn < treshold;
     }
 
     private bool SellDatePassed(){
         return SellInDateLowerThan(0);
-    }
-
-    private bool Is(string type){
-        return Name == type;
     }
 
     protected Item IncreaseQuality(int amount)
