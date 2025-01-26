@@ -36,6 +36,10 @@ public class ItemHandler
         SetQualityInRange();
     }
 
+    private bool SellDatePassed(){
+        return Item.SellIn < 0;
+    }
+
     protected virtual void DefaultQualityUpdate()
     {
         Item.Quality -= 1;
@@ -53,10 +57,6 @@ public class ItemHandler
 
         if (Item.Quality < LowQualityRange)
             Item.Quality = LowQualityRange;
-    }
-
-    private bool SellDatePassed(){
-        return Item.SellIn < 0;
     }
 
     public static ItemHandler CreateFor(Item item)

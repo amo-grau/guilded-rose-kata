@@ -1,8 +1,11 @@
 using System.Data;
+using System.Net.Http.Headers;
 using GildedRoseKata;
 
 public class SulfurasHandler : ItemHandler
 {
+    private const int QualityValue = 80;
+
     public SulfurasHandler(Item item) : base(item)
     {
     }
@@ -14,9 +17,9 @@ public class SulfurasHandler : ItemHandler
     protected override void DefaultQualityUpdate() {}
     protected override void SetQualityInRange()
     {
-        if (Item.Quality != 80) 
+        if (Item.Quality != QualityValue) 
         {
-            Item.Quality = 80;
+            Item.Quality = QualityValue;
         }
     }
 }
