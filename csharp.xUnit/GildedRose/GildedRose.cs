@@ -21,8 +21,9 @@ public class GildedRose
 
     public void Update()
     {
-        Items.ForEach(UpdateSellIn);
-        Items.ForEach(UpdateQuality);
+        var items = ItemHandlers.Select(handler=> handler.Item).ToList();
+        items.ForEach(UpdateSellIn);
+        items.ForEach(UpdateQuality);
     }
 
     private void UpdateQuality(Item item)
