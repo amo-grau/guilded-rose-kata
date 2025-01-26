@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using GildedRoseKata;
 
 public class ItemHandler
@@ -109,7 +110,7 @@ public class ItemHandler
     }
 
     private bool Is(string type){
-        return Item.Name == type;
+        return Name == type;
     }
 
     private Item IncreaseQuality(int amount)
@@ -120,6 +121,15 @@ public class ItemHandler
 
     public static ItemHandler CreateFor(Item item)
     {
-        return new ItemHandler(item);
+        switch(item.Name){
+            case "Aged Brie":
+                return new AgedBrieHandler(item);
+            case "Sulfuras, Hand of Ragnaros":
+                return new SulfurasHandler(item);
+            case "Backstage passes to a TAFKAL80ETC concert":
+                return new BackstageTicketsHandler(item);
+            default:
+                return new ItemHandler(item);
+        }
     }
 }
