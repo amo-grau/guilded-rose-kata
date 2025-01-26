@@ -15,21 +15,19 @@ public class GildedRose
  
     List<Item> Items { get; }
 
-    public void UpdateQuality()
+    public void Update()
     {
         Items.ForEach(UpdateSellIn);
-        Items.ForEach(UpdateItemQuality);
+        Items.ForEach(UpdateQuality);
     }
 
-    private void UpdateItemQuality(Item item)
+    private void UpdateQuality(Item item)
     {
         if (SellDatePassed(item))
             PassedDateUpdate(item);
 
         else
-        {
             Update(item);
-        }
 
         SetQualityInRange(item);
     }
@@ -97,7 +95,8 @@ public class GildedRose
         {
             if (item.Quality > 50)
                 item.Quality = 50;
-            if (!HasPositiveQuality(item))
+
+            if (item.Quality < 0)
                 item.Quality = 0;
         }
     }
@@ -105,17 +104,7 @@ public class GildedRose
     private bool Is(Item item, string type){
         return item.Name == type;
     }
-
-    private bool HasPositiveQuality(Item item)
-    {
-        return item.Quality > 0;
-    }
-
-    private bool HasQualityLowerThan(int treshold, Item item)
-    {
-        return item.Quality < treshold;
-    }
-
+    
     private bool SellDatePassed(Item item){
         return SellInDateLowerThan(0, item);
     }

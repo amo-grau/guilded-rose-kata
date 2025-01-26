@@ -55,7 +55,7 @@ public class Program
                 Console.WriteLine(items[j].Name + ", " + items[j].SellIn + ", " + items[j].Quality);
             }
             Console.WriteLine("");
-            app.UpdateQuality();
+            app.Update();
         }
     }
 }

@@ -29,7 +29,7 @@ public class ApprovalTest
             new Item { Name= "Conjured Mana Cake", SellIn=3, Quality=6 }
             };
         GildedRose app = new GildedRose(items);
-        app.UpdateQuality();
+        app.Update();
         
         return Verifier.Verify(items);
     }
